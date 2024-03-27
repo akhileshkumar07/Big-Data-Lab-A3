@@ -1,7 +1,7 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 import random
-import os
 
 BASE_URL = 'https://www.ncei.noaa.gov/data/local-climatological-data/access/'
 YEAR = '2021'
@@ -14,7 +14,7 @@ if page_response.status_code == 200:
     with open(os.path.join(OUTPUT_PATH, 'page_fetch.html'), 'wb') as page_file:
         page_file.write(page_response.content)
 
-# Extract CSV file links
+# Extract csv file links
 def extract_csv_links(html_content):
     soup = BeautifulSoup(html_content, 'html.parser')
     csv_links = [link.get('href') for link in soup.find_all('a') if link.get('href').endswith('.csv')]
@@ -34,3 +34,6 @@ for filename in selected_files:
     if response.status_code == 200:
         with open(os.path.join(OUTPUT_PATH, filename), 'wb') as file:
             file.write(response.content)
+
+# Delete the page_fetch.html file
+os.remove(os.path.join(OUTPUT_PATH, 'page_fetch.html'))
