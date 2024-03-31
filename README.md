@@ -1,7 +1,10 @@
+# NOAA Climatological Data Processing Pipeline
+
 We will setup a pipeline to verify a dataset’s consistency. Our proposed pipeline will acquire the public domain climatological data from National Centers for Environmental Information. The archive contains data collected from over 13400 stations from YYYY=1901 to YYYY=2024. Each year in every station the data is collected multiple times a day on the readings of Altimeter, DewPointTemperature, DryBulbTemperature, Precipitation, PresentWeatherType, PressureChange, PressureTendency, RelativeHumidity, SkyConditions, SeaLevelPressure, StationPressure, Visibility, WetBulbTemperature, WindDirection, WindGustSpeed, WindSpeed, Sunrise, Sunset readings.
 
 
 The data files (CSV formatted location specific files) also contain aggregate entries for monthly averages. We want to setup our pipeline to extract those monthly aggregates to compare them against the computed monthly averages from day wise data points. We shall use all the fields that have the monthly aggregate information. Once the monthly aggregates (ground truth in our experiment) and the estimated monthly aggregates (predicted outcome in our experiment) are ready, we shall compute the R2 score as our measurement of consistency. If the R 2 >= 0.9, we call them as consistent (C).
+![pipeline](pipeline.png "The Proposed Pipeline")
 
 
 To accomplish the task outlined, we'll follow the steps provided while setting up the pipeline using Git and DVC. Here's a step-by-step guide:
