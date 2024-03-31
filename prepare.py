@@ -1,7 +1,5 @@
 import pandas as pd
 import glob
-from tqdm.auto import tqdm
-tqdm.pandas()
 
 FILEPATH = '/home/akhilesh/big-data-lab/'
 
