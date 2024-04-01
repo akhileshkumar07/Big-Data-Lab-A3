@@ -1,30 +1,24 @@
 import pandas as pd
-import glob
+import os
+import random
+import yaml
 
-FILEPATH = '/home/akhilesh/big-data-lab/'
+FILEPATH = os.getcwd()
+files = os.listdir(FILEPATH)
 
-# Construct the pattern for CSV files
-pattern = FILEPATH + '*.csv'
-# Use glob to match files
-csv_files = glob.glob(pattern)
+# Filter only CSV files
+csv_files = [file for file in files if file.endswith('.csv')]
+print(csv_files)
 
-FILENAME = csv_files[0]
+FILENAME = random.choice(csv_files)
+# Write FILENAME to a YAML file
+with open("tmp.yaml", "w") as yaml_file:
+    yaml.dump({"FILENAME": FILENAME}, yaml_file)
+
 df = pd.read_csv(FILENAME)
 
 # Extract monthly aggregate columns & column names
 monthly_aggregates = df.filter(like='Monthly', axis=1)
-column_names = list(monthly_aggregates.columns.values)
 
 # Save extracted data to a new CSV file
 monthly_aggregates.to_csv("monthly_ground_truth.csv", index=False)
-
-# Define the file path for writing column names
-cols_file = "column_names.txt"
-
-# Open the file in write mode
-with open(cols_file, "w") as f:
-    # Write each column name followed by a newline character
-    for column_name in column_names:
-        f.write(column_name + "\n")
-
-print("Column names have been written to", cols_file)
