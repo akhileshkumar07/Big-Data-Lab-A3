@@ -5,8 +5,8 @@ import random
 import yaml
 
 BASE_URL = 'https://www.ncei.noaa.gov/data/local-climatological-data/access/'
-OUTPUT_PATH = '/home/akhilesh/big-data-lab/'
-NUM_FILES = 1
+OUTPUT_PATH = os.getcwd()
+NUM_FILES = 5
 
 # Load YEAR variable from params.yaml
 with open('params.yaml', 'r') as yaml_file:
