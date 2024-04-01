@@ -2,7 +2,7 @@ from sklearn.metrics import r2_score
 import pandas as pd
 
 # Load ground truth and computed monthly averages
-ground_truth = pd.read_csv("monthly_aggregates_ground_truth.csv")
+ground_truth = pd.read_csv("monthly_ground_truth.csv")
 computed_monthly_averages = pd.read_csv("computed_monthly_averages.csv")
 
 # Merge data on the common index
