@@ -12,6 +12,10 @@ merged_data = pd.merge(ground_truth, computed_monthly_averages, left_index=True,
 true_values = merged_data.iloc[:, :len(ground_truth.columns)]
 predicted_values = merged_data.iloc[:, len(ground_truth.columns):]
 
+# Flatten the DataFrames
+true_values = true_values.values.flatten()
+predicted_values = predicted_values.values.flatten()
+
 # Compute R2 score
 r2 = r2_score(true_values, predicted_values)
 
